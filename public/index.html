@@ -7,7 +7,7 @@
    
     <script  src="https://code.jquery.com/jquery-3.5.1.js"></script>
   
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script> -->
 
     <script type="text/javascript"  src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" async src ="https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js"></script>
@@ -18,7 +18,7 @@
     <title>React App</title>
     <script type = "text/javascript"> 
 $(document).ready(function() {
-  console.log("inside document ready");
+
   var $responsiveTable = $("#responsive-main-table");
   $responsiveTable.DataTable(
     {
@@ -28,9 +28,47 @@ $(document).ready(function() {
         processing: true,
         ordering:true,
       responsive:true,
-  }
-  );
+      autoWidth: false,
+      bJQueryUI: true,
+        order: [[1, "asc"]],
+        columnDefs: [
+          {
+            targets: 0,
+            orderable: false,
+          },
+        ],
+  });
+  
+  $.fn.dataTableExt.oJUIClasses.sSortColumn = 'sorting_1';
     });
+    window.onresize = function () {
+
+      var responsiveTable = $("#responsive-main-table").DataTable();
+  var columns = responsiveTable.columns().count();
+  var w = this.innerWidth;
+ 
+  console.log("columns:" + columns);
+  for (i = 0; i < columns; i++) {
+    var header = responsiveTable.column(i).header();
+    //console.log("header:" + JSON.stringify(header));
+   // console.log("header.innerHTML:" + header.innerHTML);
+    if (header.innerHTML === "") {
+      console.log("i:" + i  + "innerHTML==NONE");
+      responsiveTable.column(i).visible(w > 700);
+    }
+    
+  }
+
+  var table = $('#responsive-main-table').DataTable();
+  var w = this.innerWidth;
+  table.column(5).visible( w > 700);
+  table.column(4).visible( w > 600);
+  table.column(3).visible( w > 500);
+  table.column(2).visible( w > 400);
+  table.column(1).visible( w > 300);  
+};
+//trigger upon pageload
+$(window).trigger("resize");
 
     </script>
   
@@ -42,7 +80,7 @@ $(document).ready(function() {
       
       <thead>
             <tr>
-              <th>Icon</th>
+              <th></th>
                 <th>Name</th>
                 <th>Position</th>
                 <th>Office</th>
@@ -62,7 +100,7 @@ $(document).ready(function() {
                 <td>$320,800</td>
             </tr>
             <tr>
-              <td><i class="fa fa-exclamation-triangle fa-2x icon-small icon-inline icon-modified" aria-hidden="true"></i></td>
+              <td><i class="fa fa-times fa-2x icon-small icon-inline icon-closed" aria-hidden="true"></i></td>
                 <td>Garrett Winters</td>
                 <td> <p><a href="http://www.baltimorecountymd.gov/Agencies/recreation/programdivision/weather.html" title="Get the latest closing information.">Recreation Centers</a></p></td>
                 <td>Tokyo</td>
