@@ -11,3 +11,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+td.dtr-control {
+  background: url('./resource/details_open.png') no-repeat center center;
+  cursor: pointer;
+}
+tr.details td.dtr-control{
+  background: url('./resource/details_close.png') no-repeat center center;
+
+}
