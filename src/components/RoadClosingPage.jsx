@@ -7,7 +7,7 @@ import RoadClosingRows from "./RoadClosingRows";
 import RoadClosingSideBar from "./RoadClosingSideBar";
 // import ReactHtmlParser from "react-html-parser";
 import { TableBody } from "@baltimorecounty/dotgov-components";
-import data from "../data/test.json";
+import testData from "../data/test.json";
 const RoadClosingsPage = props => {
   const [{ closings = [], hasError, isLoading }] = useRoadClosings();
 
@@ -19,9 +19,9 @@ const RoadClosingsPage = props => {
   //   informationHeader,
   //   informationAbout
   // } = window.closings;
-  // useEffect(() => {
-  //   window.scrollTo(0, 0);
-  // });
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  });
   // console.log("data:" + JSON.stringify(data));
 
   // console.log("records:" + JSON.stringify(records));
@@ -56,7 +56,7 @@ const RoadClosingsPage = props => {
                   >
                     <RoadClosingHeaders />
                     <TableBody>
-                      <RoadClosingRows data={closings} testdata={data}/>
+                      <RoadClosingRows data={closings} testdata={testData}/>
                     </TableBody>
                   </RoadClosingTable>
                 </div>

@@ -5,20 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
   
    
-    <script  src="https://code.jquery.com/jquery-3.5.1.js"></script>
-  
-    <!-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script> -->
+  <script  src="https://code.jquery.com/jquery-3.5.1.js">
+  </script>
 
-    <script type="text/javascript"  src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" async src ="https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css"></link>
-    <link rel="stylesheet"  href="https://cdn.datatables.net/responsive/2.2.6/css/responsive.dataTables.min.css"></link>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+     <script src="https://kit.fontawesome.com/2475edd293.js"></script>
+ 
+     <script src="https://dev.baltimorecountymd.gov/sebin/f/x/jquery.dataTables.js"></script>
+     <script src="https://dev.baltimorecountymd.gov/sebin/f/h/dataTables.responsive.js"></script>
+     <script src="https://dev.baltimorecountymd.gov/sebin/l/s/dotgov-responsivetable.min.js"></script>
+     <script src="https://dev.baltimorecountymd.gov/sebin/z/m/dotgov-site.min.js"></script>
   
-   
-   
-    <title>React App</title>
-    <script type = "text/javascript"> 
-$(document).ready(function() {
+     <link
+    rel="stylesheet"
+    type="text/css"
+    href="https://dev.baltimorecountymd.gov/sebin/j/f/dotgov.min.css"
+  /> 
+  
+
+    <script type="text/javascript">
+      $(document).ready(function() {
+  console.log('ready----------------');
 
   var $responsiveTable = $("#responsive-main-table");
   $responsiveTable.DataTable(
@@ -40,12 +48,13 @@ $(document).ready(function() {
         ],
   });
 
- // Add event listener for opening and closing details
- $('#responsive-main-table tbody').on('click', 'td.dtr-control', function () {
-   console.log('inside click event');
-        var tr = $(this).closest('tr');
-        var responsiveTable = $("#responsive-main-table").DataTable();
-        var row = responsiveTable.row( tr );
+  $('.content').on('click', '#responsive-main-table tbody td.dtr-control' ,function (e) {
+  
+   var table = $('#responsive-main-table').DataTable();
+ 
+   var tr = $(this).closest('tr');
+        var row = table.row( tr );
+ 
         if ( row.child.isShown() ) {
             // This row is already open - close it
             row.child.hide();
@@ -56,45 +65,18 @@ $(document).ready(function() {
            row.child( format(row.data()) ).show();
             tr.addClass('shown');
         }
+   
     } );
-  
   // $.fn.dataTableExt.oJUIClasses.sSortColumn = 'sorting_1';
-     });
- //   window.onresize = function () {
-
-  //     var responsiveTable = $("#responsive-main-table").DataTable();
-  // var columns = responsiveTable.columns().count();
-  // var w = this.innerWidth;
- 
-  // console.log("columns:" + columns);
-  // for (i = 0; i < columns; i++) {
-  //   var header = responsiveTable.column(i).header();
-  //   //console.log("header:" + JSON.stringify(header));
-  //  // console.log("header.innerHTML:" + header.innerHTML);
-  //   if (header.innerHTML === "") {
-  //     console.log("i:" + i  + "innerHTML==NONE");
-  //     responsiveTable.column(i).visible(w > 700);
-  //   }
     
-  // }
-
-  // var table = $('#responsive-main-table').DataTable();
-  // var w = this.innerWidth;
-  // table.column(5).visible( w > 700);
-  // table.column(4).visible( w > 600);
-  // table.column(3).visible( w > 500);
-  // table.column(2).visible( w > 400);
-  // table.column(1).visible( w > 300);  
-//};
-//trigger upon pageload
-// $(window).trigger("resize");
-/* Formatting function for row details - modify as you need */
-function format ( d ) {
+      // Add event listener for opening and closing details
+ //$('#responsive-main-table tbody').on('click', 'tr td.dtr-control', function () {
+  function format ( d ) {
     // `d` is the original data object for the row
     return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
         '<tr>'+
             '<td>Full name:</td>'+
-            '<td>'+d.start_date+'</td>'+
+            '<td>'+d.name+'</td>'+
         '</tr>'+
         '<tr>'+
             '<td>Extension number:</td>'+
@@ -106,14 +88,54 @@ function format ( d ) {
         '</tr>'+
     '</table>';
 }
-    </script>
-  
+
+ 
+  });
+
+      </script> 
+   
   </head>
   <body>
-    <div id="root"></div>
- 
+     <div id="root" class="content"></div>
+          
+      <table id="responsive-main-table1" class="display" style="width:100%">
+      
+      <thead>
+            <tr>
+              <th></th>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Office</th>
+                <th>Age</th>
+                <th>Start date</th>
+                <th>Salary</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+              <td><i class="fa fa-exclamation-triangle fa-2x icon-small icon-inline icon-modified" aria-hidden="true"></i></td>
+                <td>Tiger Nixon</td>
+                <td> <p><a href="http://www.baltimorecountymd.gov/Agencies/recreation/programdivision/weather.html" title="Get the latest closing information.">Recreation Centers</a></p></td>
+                <td>Edinburgh</td>
+                <td>61</td>
+                <td>2011/04/25</td>
+                <td>$320,800</td>
+            </tr>
+            <tr>
+              <td><i class="fa fa-times fa-2x icon-small icon-inline icon-closed" aria-hidden="true"></i></td>
+                <td>Garrett Winters</td>
+                <td> <p><a href="http://www.baltimorecountymd.gov/Agencies/recreation/programdivision/weather.html" title="Get the latest closing information.">Recreation Centers</a></p></td>
+                <td>Tokyo</td>
+                <td>63</td>
+                <td>2011/07/25</td>
+                <td>$170,750</td>
+            </tr>
 
+</tbody>
+    </table>
   </body>
 
-
+  <script type="text/javascript">
+    
+    </script>
 </html>
