@@ -56,7 +56,7 @@ const RoadClosingsPage = props => {
                   >
                     <RoadClosingHeaders />
                     <TableBody>
-                      <RoadClosingRows data={closings} testdata={testData}/>
+                      <RoadClosingRows data={closings}/>
                     </TableBody>
                   </RoadClosingTable>
                 </div>

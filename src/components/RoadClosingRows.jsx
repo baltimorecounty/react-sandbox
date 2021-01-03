@@ -6,30 +6,13 @@ import {
   TableBody
 } from "@baltimorecounty/dotgov-components";
 import RoadClosingIcon from "./RoadClosingIcon";
-
+import  RoadClosingRowsChild from './RoadClosingRowsChild';
 const divStyles1 = {
   paddingLeft: "150px"
 };
-function format2(d, i) {
-  // `d` is the original data object for the row
-  return (
-    '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
-    "<tr  key={i+ 2}>" +
-    "<td>Full name:</td>" +
-    "<td>" +
-    d["attributes"]["FIRST_STLABEL"] +
-    "</td>" +
-    "</tr>" +
-    "</table>"
-  );
-}
+
 const RoadClosingRows = props => {
-  const { data, testData } = props;
-  // console.log("row:" + JSON.stringify(data.features));
-  // console.log("testdata:" + JSON.stringify(testdata));
-  // const recordsToDisplay = data.filter(
-  //   ({ name }) => name !== "Baltimore County Government"
-  // );
+  const { data } = props;
 
   return data.features.map((item, i) => (
     <React.Fragment>
@@ -44,11 +27,9 @@ const RoadClosingRows = props => {
         <TableCell key={`tdSpostion-${i}`}>
           {item["attributes"]["FIRST_CLOSURE_TYPE"]}
         </TableCell>
-        {/* <TableCell key={`tdOffice-${i}`}>{item.office}</TableCell> */}
+     
       </TableRow>
-      <tr key={i + 1} id={i + 1}>
-      {ReactHtmlParser(format2(item, i))}
-      </tr>
+      <RoadClosingRowsChild data={item["attributes"]} cnt ={i}/>
      
     </React.Fragment>
   ));
