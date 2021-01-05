@@ -17,7 +17,7 @@ const RoadClosingRows = props => {
   return data.features.map((item, i) => (
     <React.Fragment>
       <TableRow key={`tr-${i}`} id={i}>
-        <td key={`tdIcon-${i}`} className="dtr-control"></td>
+        <td key={`tdIcon-${i}`} className="toggler"  data-prod-cat={i}></td>
         <TableCell key={`tdfirstname-${i}`}>
           {item["attributes"]["FIRST_STLABEL"]}
         </TableCell>

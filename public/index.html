@@ -48,25 +48,39 @@
         ],
   });
 
-  $('.content').on('click', '#responsive-main-table tbody td.dtr-control' ,function (e) {
-  
-   var table = $('#responsive-main-table').DataTable();
+  $(".toggler").click(function(e){
+    alert("toggler");
+        e.preventDefault();
+      //  $('.cat'+$(this).attr('data-prod-cat')).toggle();
+    });
+      $('.content').on('click', '#responsive-main-table tbody td.toggler' ,function (e) {
+        alert( JSON.stringify(('.child-'+$(this).attr('data-prod-cat'))));
+        $('.child-'+$(this).attr('data-prod-cat')).toggle();
+      });
+
+
+ // $('.content').on('click', '#responsive-main-table tbody td.dtr-control' ,function (e) {
+   // alert("onclick");
+  //  e.preventDefault();
+   //     $('.child'+$(this).attr('data-prod-cat')).toggle();
+  //  var table = $('#responsive-main-table').DataTable();
  
-   var tr = $(this).closest('tr');
-        var row = table.row( tr );
- 
-        if ( row.child.isShown() ) {
-            // This row is already open - close it
-            row.child.hide();
-            tr.removeClass('shown');
-        }
-        else {
-            // Open this row
-           row.child( format(row.data()) ).show();
-            tr.addClass('shown');
-        }
+  //  var tr = $(this).closest('tr');
    
-    } );
+  //       var row = table.row( tr );
+ 
+  //       if ( row.child.isShown() ) {
+  //           // This row is already open - close it
+  //           row.child.hide();
+  //           tr.removeClass('shown');
+  //       }
+  //       else {
+  //           // Open this row
+  //          row.child( format(row.data()) ).show();
+  //           tr.addClass('shown');
+  //       }
+   
+    // );
   // $.fn.dataTableExt.oJUIClasses.sSortColumn = 'sorting_1';
     
       // Add event listener for opening and closing details

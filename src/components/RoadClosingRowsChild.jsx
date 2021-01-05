@@ -9,7 +9,7 @@ import RoadClosingIcon from "./RoadClosingIcon";
 
 const divStyles1 = {
   paddingLeft: "150px",
-  //display: "none"
+  display: "none"
 };
 
 const RoadClosingRowsChild = props => {
@@ -17,9 +17,10 @@ const RoadClosingRowsChild = props => {
 
 
   return (
-    <tr key={`tr-${cnt}`} id={cnt} style={divStyles1}>
-      <td key={`tdIcon-${cnt}`} className=""></td>
-      <TableCell key={`tdfirstname-${cnt}`}>{data.FIRST_STLABEL}</TableCell>
+    <tr key={`tr-child-${cnt + 1 }`} id={`child-${cnt + 1}`}  className={`child-${cnt}`} style={divStyles1}>
+      
+      <td key={`tdIcon-${cnt + 1}`} className=""></td>
+      <TableCell key={`tdfirstname-${cnt + 1 }`}>{data.FIRST_STLABEL}</TableCell>
     </tr>
   );
 };
