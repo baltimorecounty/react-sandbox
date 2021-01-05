@@ -48,13 +48,9 @@
         ],
   });
 
-  $(".toggler").click(function(e){
-    alert("toggler");
-        e.preventDefault();
-      //  $('.cat'+$(this).attr('data-prod-cat')).toggle();
-    });
+
       $('.content').on('click', '#responsive-main-table tbody td.toggler' ,function (e) {
-        alert( JSON.stringify(('.child-'+$(this).attr('data-prod-cat'))));
+       
         $('.child-'+$(this).attr('data-prod-cat')).toggle();
       });
 
