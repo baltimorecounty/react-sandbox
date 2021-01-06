@@ -6,7 +6,7 @@ import {
   TableBody
 } from "@baltimorecounty/dotgov-components";
 import RoadClosingIcon from "./RoadClosingIcon";
-import  RoadClosingRowsChild from './RoadClosingRowsChild';
+
 const divStyles1 = {
   paddingLeft: "150px"
 };
@@ -16,8 +16,8 @@ const RoadClosingRows = props => {
 
   return data.features.map((item, i) => (
     <React.Fragment>
-      <TableRow key={`tr-${i}`} id={i}>
-        <td key={`tdIcon-${i}`} className="toggler"  data-prod-cat={i}></td>
+    <TableRow key={`tr-${i}`} id={i}>
+        <td key={`tdIcon-${i}`} className="toggler"  data-prod-cat={i} closure_date={item["attributes"]["FIRST_ROAD_CLOSURE_DATE"]} closure_intersection={item["attributes"]["FIRST_INTERSECTIONLIST"]}></td>
         <TableCell key={`tdfirstname-${i}`}>
           {item["attributes"]["FIRST_STLABEL"]}
         </TableCell>
@@ -29,9 +29,12 @@ const RoadClosingRows = props => {
         </TableCell>
      
       </TableRow>
-      <RoadClosingRowsChild data={item["attributes"]} cnt ={i}/>
-     
+
+
     </React.Fragment>
+  
+     
+
   ));
 };
 

@@ -35,7 +35,7 @@ const RoadClosingsPage = props => {
   } else {
     // console.log("in else");
     // console.log("closing---:" + closings);
-    const { records=[] } = closings;
+    const { records = [] } = closings;
     // console.log("records---:" + records);
     return (
       <div className="dg_internal-template">
@@ -56,7 +56,7 @@ const RoadClosingsPage = props => {
                   >
                     <RoadClosingHeaders />
                     <TableBody>
-                      <RoadClosingRows data={closings}/>
+                      <RoadClosingRows data={closings} />
                     </TableBody>
                   </RoadClosingTable>
                 </div>

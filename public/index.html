@@ -31,14 +31,16 @@
   var $responsiveTable = $("#responsive-main-table");
   $responsiveTable.DataTable(
     {
-      info: false,
-        paging: false,
-        bFilter: false,
+      info: true,
+        paging: true,
+        filter: true,
         processing: true,
         ordering:true,
       responsive:true,
       autoWidth: false,
       bJQueryUI: true,
+      searching: true,
+    
         order: [[1, "asc"]],
         columnDefs: [
           {
@@ -47,11 +49,34 @@
           },
         ],
   });
+  // Setup - add a text input to each footer cell
+  $('#responsive-main-table tfoot th').each(function() {
+    var title = $(this).text();
+    $(this).html('<input type="text" placeholder="Search ' + title + '" />');
+  });
 
 
       $('.content').on('click', '#responsive-main-table tbody td.toggler' ,function (e) {
        
         $('.child-'+$(this).attr('data-prod-cat')).toggle();
+        var dateVal =  $(this).attr('closure_date');
+        var intersection =  $(this).attr('closure_intersection');
+     var table = $('#responsive-main-table').DataTable();
+ 
+   var tr = $(this).closest('tr');
+   
+        var row = table.row( tr );
+ 
+        if ( row.child.isShown() ) {
+            // This row is already open - close it
+            row.child.hide();
+            tr.removeClass('shown');
+        }
+        else {
+            // Open this row
+           row.child( format(dateVal,intersection) ).show();
+            tr.addClass('shown');
+        }
       });
 
 
@@ -81,21 +106,19 @@
     
       // Add event listener for opening and closing details
  //$('#responsive-main-table tbody').on('click', 'tr td.dtr-control', function () {
-  function format ( d ) {
+  function format ( dateVal ,intersection) {
     // `d` is the original data object for the row
     return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
         '<tr>'+
-            '<td>Full name:</td>'+
-            '<td>'+d.name+'</td>'+
+            '<td>Closed:</td>'+
+            '<td>'+dateVal+'</td>'+
+            
         '</tr>'+
         '<tr>'+
-            '<td>Extension number:</td>'+
-            '<td>'+d.extn+'</td>'+
-        '</tr>'+
-        '<tr>'+
-            '<td>Extra info:</td>'+
-            '<td>And any further details here (images etc)...</td>'+
-        '</tr>'+
+            '<td>Between:</td>'+
+            '<td>'+intersection+'</td>'+
+        '</tr>'
+    
     '</table>';
 }
 
@@ -108,41 +131,7 @@
   <body>
      <div id="root" class="content"></div>
           
-      <table id="responsive-main-table1" class="display" style="width:100%">
       
-      <thead>
-            <tr>
-              <th></th>
-                <th>Name</th>
-                <th>Position</th>
-                <th>Office</th>
-                <th>Age</th>
-                <th>Start date</th>
-                <th>Salary</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-              <td><i class="fa fa-exclamation-triangle fa-2x icon-small icon-inline icon-modified" aria-hidden="true"></i></td>
-                <td>Tiger Nixon</td>
-                <td> <p><a href="http://www.baltimorecountymd.gov/Agencies/recreation/programdivision/weather.html" title="Get the latest closing information.">Recreation Centers</a></p></td>
-                <td>Edinburgh</td>
-                <td>61</td>
-                <td>2011/04/25</td>
-                <td>$320,800</td>
-            </tr>
-            <tr>
-              <td><i class="fa fa-times fa-2x icon-small icon-inline icon-closed" aria-hidden="true"></i></td>
-                <td>Garrett Winters</td>
-                <td> <p><a href="http://www.baltimorecountymd.gov/Agencies/recreation/programdivision/weather.html" title="Get the latest closing information.">Recreation Centers</a></p></td>
-                <td>Tokyo</td>
-                <td>63</td>
-                <td>2011/07/25</td>
-                <td>$170,750</td>
-            </tr>
-
-</tbody>
-    </table>
   </body>
 
   <script type="text/javascript">

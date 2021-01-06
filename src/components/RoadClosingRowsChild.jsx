@@ -14,13 +14,23 @@ const divStyles1 = {
 
 const RoadClosingRowsChild = props => {
   const { data, cnt } = props;
-
-
+  console.log("data:" + JSON.stringify(data));
   return (
-    <tr key={`tr-child-${cnt + 1 }`} id={`child-${cnt + 1}`}  className={`child-${cnt}`} style={divStyles1}>
-      
-      <td key={`tdIcon-${cnt + 1}`} className=""></td>
-      <TableCell key={`tdfirstname-${cnt + 1 }`}>{data.FIRST_STLABEL}</TableCell>
+ 
+    <tr
+      key={`tr-child-${cnt}`}
+      id={`child-${cnt}`}
+      className={`child-${cnt}`}
+      style={divStyles1}
+    >
+      <td key={`tdChildIcon-${cnt}`} className=""></td>
+      <td key={`tdChildfirstname-${cnt}`}>{data.CLOSURE_ID}</td>
+      <td key={`tdChildCol3-${cnt}`} className="">
+        &nbsp;
+      </td>
+      <td key={`tdChildICol4-${cnt}`} className="">
+        &nbsp;
+      </td>
     </tr>
   );
 };
