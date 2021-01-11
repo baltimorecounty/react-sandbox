@@ -8,7 +8,7 @@ const divStyles = {
 
 const RoadClosingTable = props => {
   return (
-    <Table id="responsive-main-table" className="display">
+    <Table id="responsive-main-table" className="display responsive">
       {props.children}
     </Table>
   );
