@@ -1,22 +1,26 @@
-import React, { useState } from "react";
+import React from "react";
 // import ReactHtmlParser from "react-html-parser";
 //import { TableBody } from "@baltimorecounty/dotgov-components";
-import xmlData from "../data/test.xml";
+import jsonData from "../data/test.json";
 import DecisionStep from "./DecisionStep";
-import XMLParser from "react-xml-parser";
-import axios from "axios";
+//import XMLParser from "react-xml-parser";
+//import axios from "axios";
 import StepWizard from 'react-step-wizard';
 
 const DecisionTree = props => {
-    const [getJson, setJson] = useState("");
 
-     if (getJson) {     
+     if (jsonData) {    
+        //console.log(jsonData) ;
+        //console.log(jsonData.Questions) ;
         return (
             <div>
                 <StepWizard>
-                    {JSON.parse(getJson).children.map((question, i) => 
+                    {jsonData.Questions.map((question, i) => 
                         <DecisionStep 
-                        text={question.children[0]}
+                        setName={jsonData.QuestionSetName}
+                        text={question.Question}
+                        choices={question.Choices}
+                        type={question.Type}
                         key={i}
                         />
                         )}
@@ -24,14 +28,7 @@ const DecisionTree = props => {
             </div>
             )
      } else {
-        axios.get(xmlData, {
-            "Content-Type": "application/xml; charset=utf-8"
-         })
-         .then((response) => {
-            var jsonDataFromXml = new XMLParser().parseFromString(response.data);
-            setJson(JSON.stringify(jsonDataFromXml));
-            //console.log(jsonDataFromXml);
-         });
+
          return (
              <div>Loading</div>
          )
